@@ -18,8 +18,9 @@ async function ingresarUsuario(email, nombre, pw2, experiencia, especialidad, na
 
     } catch (error) {
         console.log(error)
-        return error
+        return error.code
     }
+    /* let idNuevo = result1.rows[0].id; */
 }
 
 
