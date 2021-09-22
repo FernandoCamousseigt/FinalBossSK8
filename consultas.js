@@ -17,7 +17,7 @@ async function ingresarUsuario(email, nombre, pw2, experiencia, especialidad, na
         return registro
 
     } catch (error) {
-        console.lo(error)
+        console.log(error)
         return error
     }
 }
