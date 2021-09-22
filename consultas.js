@@ -8,6 +8,7 @@ const pool = new Pool({
     port: 5432,
     database: "skatepark"
 })
+//consultas tipo ejercicio final de consigna: try, return, catch
 async function ingresarUsuario(email, nombre, pw2, experiencia, especialidad, name) {
     try {
         const result = await pool.query(`INSERT INTO skaters(email,nombre,password,anos_experiencia,especialidad,foto,estado)
