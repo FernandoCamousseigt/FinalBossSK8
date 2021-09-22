@@ -1,63 +1,64 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Registro Skatepark</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
       integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
       crossorigin="anonymous"
     />
+    <link href="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"/>
     <link rel="stylesheet" href="css/estilos.css" />
-  </head>
+  </head> 
+  
+  
   <body>
-    <h1>Skate Park</h1>
 
-    <div class="py-4">
-      <h2>Registro</h2>
-      <hr class="w-50" />
+<h1>Skate Park</h1>
 
-      <form>
-        <form action="/skater" method="POST" enctype="multipart/form-data" 
-        <div class="form-group row w-50 m-auto">
-          <div class="form-group col-12 col-sm-6">
-            <label>Email</label>
-            <input class="form-control m-auto" type="text" name="email" id="email" placeholder="Ejemplo@superskater.com"/>
-          </div>
-          <div class="form-group col-12 col-sm-6">
-            <label>Nombre</label>
-            <input class="form-control m-auto" type="text" name="name" id="name" placeholder="Nombre"/>
-          </div>
-          <div class="form-group col-12 col-sm-6">
-            <label>Password</label>
-            <input class="form-control m-auto" type="password" name="pw" id="pw" placeholder="Password"/>
-          </div>
-          <div class="form-group col-12 col-sm-6">
-            <label>Repita la password</label>
-            <input class="form-control m-auto" type="password" name="pw2" id="pw2" placeholder="Repita password aqui"/>
-          </div>
-          <div class="form-group col-12 col-sm-6">
-            <label>Años de experiencia</label>
-            <input class='form-control m-auto' type="number" id='ano_experiencia' name="experiencia"/>
-          </div>
-          <div class="form-group col-12 col-sm-6">
-            <label>Especialidad</label>
-            <input class='form-control m-auto' type="text" id="especialidad" name="especialidad" />
-          </div>
-          <div class="form-group col-12 col-sm-12">
-            <label>Foto de perfil</label>
-            <input type="file" name="fotoSkater" id="foto" placeholder="Seleccionar Imagen"/>
-          </div>
-        </div>
-        <button type="submit" class="btn btn-info mb-3" id="btnRegistrar">Registrarme</button>
-        <p><a href="/login"> Iniciar sesión</a></p>
-      </form>
+<div class='py-4'>
+  <h2>Registro</h2>
+  <hr class='w-50' />
+
+  <form action="/skaterprofile" method="POST" enctype="multipart/form-data"> {{!-- por post como ejercicio visto clases --}}
+    <div class='form-group row w-50 m-auto'>
+      <div class='form-group col-12 col-sm-6'>
+        <label>Email</label>
+        <input class='form-control m-auto' type="email" name="email" id="email" placeholder="ejemplo@superskater.com"/>
+      </div>
+      <div class='form-group col-12 col-sm-6'>
+        <label>Nombre</label>
+        <input class='form-control m-auto' type="text" name="nombre" id="nombre" placeholder="escriba su nombre aqui"/>
+      </div>
+      <div class='form-group col-12 col-sm-6'>
+        <label>Password</label>
+        <input class='form-control m-auto' type="password" name="pw1" id="pw" placeholder="escriba su password"/>
+      </div>
+      <div class='form-group col-12 col-sm-6'>
+        <label>Repita la password</label>
+        <input class='form-control m-auto' type="password" name="pw2" id="pw2" placeholder="repita password aqui"/>
+      </div>
+      <div class='form-group col-12 col-sm-6'>
+        <label>Años de experiencia</label>
+        <input class='form-control m-auto' type="number" name="experiencia" id='anos_experiencia'/>
+      </div>
+      <div class='form-group col-12 col-sm-6'>
+        <label>Especialidad</label>
+        <input class='form-control m-auto' type="text" name="especialidad" id='especialidad'/>
+      </div>
+      <div class='form-group col-12 col-sm-12 mt-2'>
+        <label>Foto de perfil</label>
+        <input type="file" name="fotoSkater" id="foto" placeholder="Seleccionar Imagen"/>
+      </div>
     </div>
-    {{!-- //<script src="/js/registro.js"> </script>  
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>--}}
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  </body>
+    <button type="submit" class="btn btn-info mb-3" id="btnRegistrar">Registrarme</button>
+        <p><a href="/login"> Iniciar sesión</a></p>
+  </form>
+</div>
+
+</body>
 </html>
