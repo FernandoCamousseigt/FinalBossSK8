@@ -94,7 +94,7 @@ app.post('/skater', async (req, res) => {
         try {
             const agregarSkater = await ingresarUsuario(email, nombre, pw2, experiencia, especialidad, name);
             res.status(201).render("Login");
-            res.status(201).send(agregarSkater);
+            //res.status(201).send(agregarSkater);
         } catch (error) {
             console.log(error);
             res.status(500).send({
