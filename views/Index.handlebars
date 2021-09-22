@@ -1,3 +1,4 @@
+<body>
 <h1>Skate Park</h1>
 
 <div class="py-4">
@@ -16,11 +17,11 @@
         <th scope="col">Estado</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="tablabody">
 
 <script>
   const url = "http://localhost:3000/lista"
-  let tbody = document.getElementById("cuerpoTabla");
+  let tbody = document.getElementById("tablabody");
   window.onload = getData();
 
   async function getData() {
