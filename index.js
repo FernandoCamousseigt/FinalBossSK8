@@ -53,7 +53,7 @@ app.set("view engine", "handlebars");
 
 
 //Rutas
-
+//raiz. //cuando entre al localhost me va a llevar ahi:
 app.get( "/" ,  (req, res) => {
     res.render("Index");
   });
