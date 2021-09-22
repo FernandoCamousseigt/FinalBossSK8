@@ -36,7 +36,7 @@ app.use(express.json());
 app.use(express.static("public"));  // (__dirname + "/public");
 app.use(
   expressFileUpload({
-  limits: 5000000,
+  limits: {fileSize: 5000000},
   abortOnLimit: true,
   responseOnLimit: "El tamaño de la imagen supera el límite permitido (5MB)",
   })
