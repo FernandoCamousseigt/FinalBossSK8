@@ -85,6 +85,8 @@ app.post('/skater', async (req, res) => {
 
     //const skaterDatos = req.body; 
     //console.log(skaterDatos);
+    
+    //foto. similar a repositorio M8APIREST(ver).  adicional ver HTMLNODECRUD
     let { fotoSkater } = req.files; //fotoSkater  porque es <input type="file" name="fotoSkater" />  en el registro.html
     let {name} = fotoSkater;       //let porque quiero que cambie. no usar const porque no es una constante
     console.log(req.files);
