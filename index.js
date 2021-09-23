@@ -93,14 +93,19 @@ app.post('/skater', async (req, res) => {
 
     fotoSkater.mv(`${__dirname}/public/img/${name}`, async (error, data) => {
         if (error) res.status(500).send('Error al cargar imagen', error);
+        })
+    });
+        //exito solicitud
         try {
             const agregarSkater = await ingresarUsuario(email, nombre, pw2, experiencia, especialidad, name);
             res.status(201).render("Login");
             //res.status(201).send(agregarSkater);
+            // 201 ok request.created
+         //fallo:
         } catch (error) {
             console.log(error);
             res.status(500).send({
-                error: `Error ${error}`,
+                error: `Error en consulta ${error}`,
                 code: 500
             })
         }
