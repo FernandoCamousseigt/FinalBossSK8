@@ -20,7 +20,7 @@ body {
       height: 60px;
   }
   
-  tbody tr:nth-child(1) td div{
+  /* tbody tr:nth-child(1) td div{
           background-image: url("/tony.jpg");
   }
   
@@ -31,6 +31,11 @@ body {
   tbody tr:nth-child(3) td div{
       background-image: url("/Danny.jpg");
   }
+  tbody tr:nth-child(4) td div{
+    background-image: url("/Danny.jpg");
+}tbody tr:nth-child(5) td div{
+    background-image: url("/Danny.jpg");
+} */
   
   input{
       text-align: center;
