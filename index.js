@@ -67,7 +67,7 @@ app.get('/', async (req, res) => {
 app.get("/registro", (req, res) => {
     res.render("Registro")
 });
-
+ //si no fuera con handlebar seria res.sendFile(__dirname + "/index.html")
 app.post('/skater', async (req, res) => {
 
   let email = req.body.email;
