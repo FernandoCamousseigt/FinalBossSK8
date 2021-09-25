@@ -12,7 +12,7 @@ const secretKey = "1234"
 const {
     inscribirSkater,
     traerSkaters,
-    datosUsuarios,
+    setUsuarioStatus,
     autentica,
     actualiza,
     borra,
@@ -87,6 +87,33 @@ app.get("/ingresos", async (req, res) => {
     res.send(registros)
 })
 
+//al entrar a localhost:3000/Admin.  tipo NASA..ahi  usan getUsuarios, cambie a traerSkaters
+app.get("/admin", async (req, res) => {
+    try {
+        const usuarios = await traerSkaters()
+        res.render("Admin", {usuarios})
+    } catch (e) {
+        res.status(500).send({
+            error: `Algo salió mal ${e}`,
+            code: 500
+        })
+    }
+})
+
+//cambiar estado a usuarios. tipo NASA
+app.put("/usuarios", async (req, res) => {
+    const {id, estado} = req.body
+    try {
+        const usuario = await setUsuarioStatus(id, estado)
+        res.status(200).send(JSON.stringify(usuario))
+    } catch (e) {
+        res.status(500).send({
+            error: `Algo salio mal... ${e}`,
+            code: 500
+        })
+    }
+})
+
 /* //API
 //subir imagen skater
 app.post( "/api_upload_image" , async (req, res) => {
@@ -99,7 +126,7 @@ app.post( "/api_upload_image" , async (req, res) => {
   }); */
 
 
-// por POST skater. //signup skater and image
+// por POST skater. //signup skater and image //  NASA /usuarios
 app.post("/skaterprofile", async (req, res) => {
 
 
