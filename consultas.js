@@ -1,7 +1,7 @@
 const {Pool} = require('pg')
 const pool = new Pool({
     user: 'postgres',
-    password: "postgres",
+    password: "mrroboto7",
     host: "localhost",
     port: 5432,
     database: "skatepark"
@@ -34,14 +34,16 @@ async function traerSkaters() {
 
 async function setUsuarioStatus(id, estado) {
 
-    const result = await pool.query(`UPDATE skaters SET estado=${estado} WHERE id = ${id} RETURNING *;`)
+    const result = await pool.query(`UPDATE skaters SET estado=${estado} WHERE id = ${id} RETURNING *;`);
+    return result.rows[0]
+}
+
+async function autenticar(email, password) {
+    const result = await pool.query(`SELECT * FROM skaters WHERE email='${email}'AND password='${password}'`);
     return result.rows[0]
 }
 
 module.exports = {
-    inscribirSkater,traerSkaters, setUsuarioStatus
-/*     datosUsuarios,
-    autentica,
-    actualiza,
-    borra */
+    inscribirSkater,traerSkaters, setUsuarioStatus, autenticar
+
 }

@@ -13,7 +13,7 @@ const {
     inscribirSkater,
     traerSkaters,
     setUsuarioStatus,
-    autentica,
+    autenticar,
     actualiza,
     borra,
 } = require('./consultas')
@@ -87,14 +87,15 @@ app.get("/ingresos", async (req, res) => {
     res.send(registros)
 })
 
+//ADMIN
 //al entrar a localhost:3000/Admin.  tipo NASA..ahi  usan getUsuarios, cambie a traerSkaters
 app.get("/admin", async (req, res) => {
     try {
         const usuarios = await traerSkaters()
-        res.render("Admin", {usuarios})
+        res.render("Admin", {usuarios});
     } catch (e) {
         res.status(500).send({
-            error: `Algo salió mal ${e}`,
+            error: `Algo salió mal... ${e}`,
             code: 500
         })
     }
@@ -108,7 +109,7 @@ app.put("/usuarios", async (req, res) => {
         res.status(200).send(JSON.stringify(usuario))
     } catch (e) {
         res.status(500).send({
-            error: `Algo salio mal... ${e}`,
+            error: `Algo salió mal... ${e}`,
             code: 500
         })
     }
@@ -126,8 +127,11 @@ app.post( "/api_upload_image" , async (req, res) => {
   }); */
 
 
-// por POST skater. //signup skater and image //  NASA /usuarios
+// por POST inscribir skater. //signup skater and image //  NASA /usuarios
 app.post("/skaterprofile", async (req, res) => {
+    if (Object.keys(req.files).length == 0) {
+        return res.status(400).send("No se encuentra ningun archivo")
+    };
 
 
 //Datos
@@ -137,6 +141,12 @@ app.post("/skaterprofile", async (req, res) => {
     let pw2 = req.body.pw2;
     let experiencia = req.body.experiencia;
     let especialidad = req.body.especialidad;
+
+    console.log("email", email);   //comprobar que llegan datos
+    console.log("nombre", nombre);
+    console.log("pw2", pw2);
+    console.log("experiencia", experiencia);
+    console.log("especialidad", especialidad);
 
         /*   let user_image = req.body.user_image;
         let r = await InscribirSkater(nombre,telefono,email,pass,user_image);
@@ -173,6 +183,64 @@ app.post("/skaterprofile", async (req, res) => {
 });
 
 
+
+//Verify de email y password 
+app.post("/autenticar", async function (req, res) {
+    const { email, password} = req.body
+    const user = await autenticar(email, password);
+    if (user.email) {
+        if (user.estado) {
+            const token = jwt.sign({
+                    exp: Math.floor(Date.now() / 1000) + 180,
+                    data: user
+                },
+                secretKey
+            );
+            res.send(token)
+        } else {
+            res.status(401).send({
+                error: "Este usuario aún no ha sido validado",
+                code: 401
+            })
+        }
+    } else {
+        res.status(404).send({
+            error: "Este usuario no está registrado en la base de datos",
+            code: 404
+        });
+    }
+});
+
+
+//Datos (evidencias)
+app.get("/datos", function (req, res) {
+    const {token} = req.query;
+    jwt.verify(token, secretKey, (err, decoded) => {
+        const { data } = decoded
+        const {id, email, nombre, password, especialidad, anos_experiencia } = data
+        err 
+            ? res.status(401).send(
+                res.send({
+                    error: "401 No autorizado",
+                    message: "Usted no está autorizado para entrar aquí",
+                    token_error: err.message
+                })
+            ) 
+            : res.render("datos", {
+                id, email, nombre, password, especialidad, anos_experiencia
+            });
+    });
+});
+
+
+//
+
+
+
+
+
+
+//otra ruta
 app.get("*", (req, res) => {
     res.send("Ruta invalida")
 });

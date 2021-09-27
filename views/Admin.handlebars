@@ -16,11 +16,12 @@
                     <th scope="col">Estado</th>
                 </tr>
             </thead>
-            <tbody id="tablabody"> {{!-- NASA --}}
+            <tbody id="tablabody"> 
+                {{!-- NASA --}}
                 {{#each usuarios}}
                 <tr>
                     <td>{{@index}}</td>
-                    <td><img src="public/img/{{this.foto}}" width="50"</td>
+                    <td><img src="/img/{{this.foto}}" width="50"</td>
                     <td>{{this.nombre}}</td>
                     <td>{{this.anos_experiencia}}</td>
                     <td>{{this.especialidad}}</td>
@@ -35,7 +36,7 @@
 </body>
 <script>
 
-const cambiarEstado=async(id, e)=>{
+const cambiarEstado=async(id, e) => {
     const estado=e.checked
 
     try{

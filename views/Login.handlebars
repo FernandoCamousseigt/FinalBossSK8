@@ -21,3 +21,25 @@
     </form>
   </div>
 </body>
+
+{{!-- la nasa. con onclick no corre. use id --}}
+<script>
+  const verify = document.getElementById('verificacion')
+  verify.addEventListener("click", async (e) =>   {
+    e.preventDefault()
+    const email = document.getElementById('email').value
+    const password = document.getElementById('password').value
+    const payload = { email, password }
+    try {
+      const { data: token } = await axios.post('/autenticar', payload)    
+      alert("Autenticación exitosa")
+      window.location.href = `/Datos?token=${token}`
+    } catch ({ response }) {
+      const { data } = response
+      const { error } = data
+      alert(error)
+
+    }
+  })
+
+</script>
