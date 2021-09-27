@@ -130,7 +130,7 @@ app.post( "/api_upload_image" , async (req, res) => {
 // por POST inscribir skater. //signup skater and image //  NASA /usuarios
 app.post("/skaterprofile", async (req, res) => {
     if (Object.keys(req.files).length == 0) {
-        return res.status(400).send("No se encuentra ningun archivo")
+        return res.status(400).send("No se encontro ningun archivo")
     };
 
 
@@ -226,18 +226,48 @@ app.get("/datos", function (req, res) {
                     token_error: err.message
                 })
             ) 
-            : res.render("datos", {
+            : res.render("Datos", {
                 id, email, nombre, password, especialidad, anos_experiencia
             });
     });
 });
 
 
-//
+// boton actualizar datos usuario   
+app.put("/actualiza", async (req, res) => {
+    const { id, nombre, password2, experiencia, especialidad } = req.body
+    console.log("id", id);   //comprobar datos
+    console.log("nombre", nombre);
+    console.log("password2", password2);
+    console.log("experiencia", experiencia);
+    console.log("especialidad", especialidad);
 
+    try {
+        const result = await actualiza(id, nombre, password2, experiencia, especialidad)
+        console.log(result)
+        res.status(200).render("Index")
 
-
-
+    } catch (e) {
+        res.status(500).send({
+            error: `Algo salio mal... ${e}`,
+            code: 500
+        })
+    }
+})
+ app.delete("/eliminarcuenta", async (req, res) => {   
+    let {id} = req.body.source
+ 
+  try { 
+        const registro = await borra(id)
+        res.status(200).render("Index")
+        
+    }  catch (e) {
+        res.status(500).send({
+            error: `Algo salio mal ${e}`,
+            code: 500
+        })
+    } 
+}) 
 
 
 //otra ruta

@@ -43,7 +43,20 @@ async function autenticar(email, password) {
     return result.rows[0]
 }
 
-module.exports = {
-    inscribirSkater,traerSkaters, setUsuarioStatus, autenticar
+async function actualiza(id, nombre, password2, experiencia, especialidad) {
 
+    const result = await pool.query(`UPDATE skaters SET nombre='${nombre}',password='${password2}',especialidad='${especialidad}',anos_experiencia=${experiencia} WHERE id=${id} RETURNING *;`);
+    return result.rows[0]
 }
+
+async function borra(id) {  
+  
+    id = Number.parseInt(id)  
+    const result = await pool.query(`DELETE FROM skaters WHERE id=${id}`)
+    return result
+}
+
+
+
+module.exports = {
+    inscribirSkater,traerSkaters, setUsuarioStatus, autenticar, actualiza, borra}
