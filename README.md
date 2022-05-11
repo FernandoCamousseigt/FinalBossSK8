@@ -1,10 +1,10 @@
 # FinalBossSK8  SKATE PARK 
-
+Objetivo: Desarrollar la plataforma web en la que los participantes se podrán registrar y revisar el estado de su solicitud.
 ● Crear una API REST con el Framework Express.
 ● Servir contenido dinámico con express-handlebars.
 ● Ofrecer la funcionalidad Upload File con express-fileupload.
 ● Implementar seguridad y restricción de recursos o contenido con JWT.
-Objetivo: Desarrollar la plataforma web en la que los participantes se podrán registrar y revisar el estado de su solicitud.
+
 
 #Para correrlo:
 #en pg poner datos: los mismos de configuracion que estan consulta.js (ver archivo) user, password            
