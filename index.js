@@ -56,26 +56,6 @@ app.get("/", (req, res) => {
 app.get("/registro", (req, res) => {      
     res.render("Registro")
 })
-//si no fuera con handlebar res.sendFile(__dirname + "/index.html")
-
-/* *******************
-    app.get( "/" ,  (req, res) => {
-    res.render("Home");
-  });
-  
-  app.post( "/login_user" ,  (req, res) => {
-    res.render("Login_User", {layout: "Login_User"});
-  });
-  
-  app.post( "/login_admin" ,  (req, res) => {
-    res.render("Login_Admin", {layout: "Login_Admin"});
-  });
-  
-  app.get( "/register" ,  (req, res) => {
-    res.render("Register", {layout: "Register"});
-  }); 
-  *****************
-  */
 
 //login get. 
 app.get("/login", async (req, res) => {
@@ -88,7 +68,7 @@ app.get("/ingresos", async (req, res) => {
 })
 
 //ADMIN
-//al entrar a localhost:3000/Admin.  tipo NASA..ahi  usan getUsuarios, cambie a traerSkaters
+//al entrar a localhost:3000/Admin
 app.get("/admin", async (req, res) => {
     try {
         const usuarios = await traerSkaters()
@@ -101,7 +81,7 @@ app.get("/admin", async (req, res) => {
     }
 })
 
-//cambiar estado a usuarios. tipo NASA
+//cambiar estado a usuarios. 
 app.put("/usuarios", async (req, res) => {
     const {id, estado} = req.body
     try {
@@ -115,19 +95,7 @@ app.put("/usuarios", async (req, res) => {
     }
 })
 
-/* //API
-//subir imagen skater
-app.post( "/api_upload_image" , async (req, res) => {
-    let foto = req.files.myFile;
-    console.log(__dirname,'/public/img') 
-    foto.mv(__dirname+'/public/imag/'+foto.name, (err) => {
-      if (err) {console.log(err.code);}
-      else {console.log("imagen almacenada");}
-    });
-  }); */
-
-
-// por POST inscribir skater. //signup skater and image //  NASA /usuarios
+// inscribir skater. //signup skater and image //
 app.post("/skaterprofile", async (req, res) => {
     if (Object.keys(req.files).length == 0) {
         return res.status(400).send("No se encontro ningun archivo")
@@ -148,13 +116,7 @@ app.post("/skaterprofile", async (req, res) => {
     console.log("experiencia", experiencia);
     console.log("especialidad", especialidad);
 
-        /*   let user_image = req.body.user_image;
-        let r = await InscribirSkater(nombre,telefono,email,pass,user_image);
-        if (r!=''){
-            res.json({respuesta:"Correcta"})
-        }
-    }); */
-
+       
 //foto. similar a repositorio M8APIREST(ver).  adicional ver HTMLNODECRUD
     let { fotoSkater } = req.files  //fotoSkater  porque es <input type="file" name="fotoSkater" />  en el registro handlebar /simil a repo collage htmlcrud
     let {name} = fotoSkater  //name porque es name en target_file cuando se ve el console.log //let porque quiero que cambie. no usar const porque no es una constante
